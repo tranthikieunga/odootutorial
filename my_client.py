@@ -22,12 +22,12 @@ def main():
                         params={'fields': ['name', 'dob'], }), title='Zoo Animals')
 
     # Update
-    client.update(model_name="zoo.animal", id_list=[id], new_data_dict={"name": "MKyz"})
-    print("Updated animal @ %d" % id)
+    # client.update(model_name="zoo.animal", id_list=[id], new_data_dict={"name": "MKyz"})
+    # print("Updated animal @ %d" % id)
 
     # Delete
-    client.delete(model_name="zoo.animal", id_list=[id])
-    print("Delted animal @ %d" % id)
+    # client.delete(model_name="zoo.animal", id_list=[id])
+    # print("Delted animal @ %d" % id)
 
 
 if __name__ == "__main__":
