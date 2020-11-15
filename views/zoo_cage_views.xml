@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="zoo_cage_form_view" model="ir.ui.view">
+            <field name="name">zoo.cage.form.view</field>
+            <field name="model">zoo.cage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Cage" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="Cage #1"/></h1>
+                        </div>
+
+                        <group name="basic_information">
+                            <group>
+                                <field name="Cage Name"/>
+                                <field name="Code"/>
+                                <field name="Length"/>
+                                <field name="Width"/>
+                                <field name="Height"/>
+                            </group>
+
+                            <group>
+                                <field name="Description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="zoo_cage_tree_view" model="ir.ui.view">
+            <field name="name">zoo.cage.tree.view</field>
+            <field name="model">zoo.cage</field>
+            <field name="arch" type="xml">
+                <tree string="Cage" default_order="create_date desc">
+                    <field name="Cage Name"/>
+                    <field name="Code"/>
+                    <field name="Length"/>
+                    <field name="Width"/>
+                    <field name="Height"/>
+                    <field name="Description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- action window declared here (step #2) -->
+         <record id="action_zoo_cage" model="ir.actions.act_window">
+            <field name="name">Cage</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">zoo.cage</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('zoo_cage_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('zoo_cage_form_view')})]"/>
+        </record>
+        <!-- menu items declared here (step #1) -->
+        <menuitem id="menu_zoo_configuration"
+            name="Configuration"
+            sequence="50"
+            parent="menu_zoo"
+            groups="base.group_user"/>
+
+        <menuitem id="menu_zoo_configuration_creature"
+            name="Cage"
+            sequence="10"
+            parent="menu_zoo_configuration"
+            action="action_zoo_cage"
+            groups="base.group_user"/>
+    </data>
+</odoo>
